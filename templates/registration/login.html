@@ -1,0 +1,41 @@
+{% include "components/header.html" %}
+
+<div class="container">
+    {% if user.is_authenticated %}
+        <h3 class="">You're already logged in</h3>
+        <a href="{% url 'app:index' %}" class="btn waves-effect waves-light teal">
+            Home <i class="material-icons right">home</i>
+        </a>
+        <a href="{% url 'app:logout' %}" class="btn waves-effect waves-light pink">Log out <i class="material-icons right">arrow_right</i></a>
+    {% else %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col s12">
+                {% if form.errors %}
+                    <p class="red">The username and the password didn't match</p>
+                {% endif %}
+                <div class="input-field">
+                    <input type="text" class="validate" required name="username" id="username">
+                    <label for="username">Username</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="input-field">
+                    <input type="password" class="validate" required name="password" id="password">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit">Login</button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+</div>
+</body>
+</html>

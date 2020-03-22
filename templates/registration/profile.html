@@ -1,0 +1,35 @@
+{% include "components/header.html" %}
+{% load static %}
+<div class="container">
+    {% if not user.is_authenticated %}
+        <h3>Welcome to our todo list app</h3>
+        <a href="{% url 'app:signup' %}" class="btn waves-effect waves-light teal">Signup</a>
+        <a href="{% url 'login' %}" class="btn waves-effect waves-light pink">Login</a>
+    {% else %}
+        <h1>Welcome back {{ user.username }}</h1>
+
+        <form class="todo-form">
+        {% csrf_token %}
+            <div class="input-field">
+                <input type="text" name="todo_text" id="todo_text">
+                <label for="todo_text">Add a todo</label>
+            </div>
+            <button type="submit" class="btn waves-effect waves-light teal">Add todo</button>
+        </form>
+        <ul class="collection with-header">
+            <li class="collection-header">
+                <h3 class="teal-text">Your todos</h3>
+            </li>
+           <div class="todos">
+                <p class="collection-item todo">
+                    First todo
+                    <i class="material-icons secondary-content text-red">delete</i>
+                </p>
+           </div>
+        </ul>
+    {% endif %}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
