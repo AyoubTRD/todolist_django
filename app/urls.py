@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from .views import index, signup, logout_view, todo, todos
 
@@ -9,5 +10,7 @@ urlpatterns = [
     path('todo/', todos, name='todos'),
     path('todo/<int:todo_id>/', todo, name='todo')
 ]
+
+urlpatterns += staticfiles_urlpatterns()
 
 app_name = 'app'
