@@ -127,7 +127,9 @@ STATICFILES_FINDERS = [
 ]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'app/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'app', 'static')
+
+print(STATIC_ROOT)
 
 import dj_database_url
 prod_db  =  dj_database_url.config(conn_max_age=500)
