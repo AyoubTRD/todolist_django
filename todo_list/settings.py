@@ -48,7 +48,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'todo_list.urls'
 
@@ -127,9 +130,7 @@ STATICFILES_FINDERS = [
 ]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'app', 'static')
-
-print(STATIC_ROOT)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 import dj_database_url
 prod_db  =  dj_database_url.config(conn_max_age=500)
