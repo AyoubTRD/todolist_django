@@ -1,1 +1,1 @@
-web: gunicorn djangoherokuapp.wsgi
+web: gunicorn todo_list.wsgi
