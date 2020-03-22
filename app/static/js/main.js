@@ -3,8 +3,6 @@ const form = document.querySelector('.todo-form');
 
 let todos = [];
 
-console.log("Hello world")
-
 async function main() {
     todosDeleteListener();
     todosCreateListener();
@@ -23,15 +21,39 @@ const renderTodos = () => {
 const renderTodo = todo => {
     todosContainer.innerHTML += `
         <p class="collection-item todo">
-            ${todo.todo_text}
+            <span data-id="${todo.id}" class="todo-text ${todo.is_done ? 'line-through' : ''}">${todo.todo_text}</span>
             <i class="material-icons secondary-content text-red todo-delete" data-id="${todo.id}">delete</i>
         </p>
     `
 };
 
 const todosDeleteListener = () => {
-    todosContainer.addEventListener('click', e => {
-        console.log(e.target);
+    todosContainer.addEventListener('click', async e => {
+        if(Array.from(e.target.classList).includes('todo-delete')) {
+            const todo_id = parseInt(e.target.getAttribute('data-id'));
+            todos = todos.filter(todo => todo.id !== todo_id);
+            renderTodos();
+            try {
+                await axios.delete(`/todo/${todo_id}`);
+            }
+            catch(e) {
+                console.log(e);
+            }
+        }
+        if (Array.from(e.target.classList).includes('todo-text')) {
+            const todo_id = parseInt(e.target.getAttribute('data-id'));
+            todos = todos.map(todo =>
+                todo.id === todo_id ? {...todo, is_done: !todo.is_done}: todo);
+            renderTodos();
+
+            try {
+                await axios.put(`/todo/${todo_id}/`, todos.find(
+                    todo => todo.id === todo_id));
+            }
+            catch(e) {
+                console.log(e);
+            }
+        }
     });
 };
 

@@ -1,0 +1,18 @@
+i {
+    user-select: none;
+}
+
+.todo-delete {
+    color: #ee342e;
+    cursor: pointer;
+}
+
+.todo-text {
+    cursor: default;
+    transition: 0.2s;
+}
+
+.line-through {
+    text-decoration: line-through;
+    opacity: 0.7;
+}

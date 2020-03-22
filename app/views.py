@@ -36,7 +36,7 @@ def signup(request):
                 user.save()
                 user = authenticate(username=username, password=password)
                 login(request, user)
-                redirect(reverse('app:index'))
+                return redirect(reverse('app:index'))
 
         except KeyError:
             message = 'Please fill in all the required fields'

@@ -16,5 +16,6 @@ class Todo(models.Model):
         return {
             'todo_text': self.todo_text,
             'is_done': self.is_done,
-            'pub_date': self.pub_date
+            'pub_date': self.pub_date,
+            'id': self.id
         }

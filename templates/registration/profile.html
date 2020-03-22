@@ -11,8 +11,7 @@
         <form class="todo-form">
         {% csrf_token %}
             <div class="input-field">
-                <input type="text" name="todo_text" id="todo_text">
-                <label for="todo_text">Add a todo</label>
+                <input type="text" name="todo_text" id="todo_text" placeholder="Add a todo">
             </div>
             <button type="submit" class="btn waves-effect waves-light teal">Add todo</button>
         </form>
@@ -20,12 +19,7 @@
             <li class="collection-header">
                 <h3 class="teal-text">Your todos</h3>
             </li>
-           <div class="todos">
-                <p class="collection-item todo">
-                    First todo
-                    <i class="material-icons secondary-content text-red">delete</i>
-                </p>
-           </div>
+           <div class="todos"></div>
         </ul>
     {% endif %}
 </div>
